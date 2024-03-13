@@ -7,12 +7,14 @@ export default function SignUp() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,45 +41,52 @@ export default function SignUp() {
       setError(error.message);
     }
   };
+  
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
+    <div className='container mx-auto max-w-lg'>
+      <h1 className='text-3xl font-semibold text-center my-7'>Sign Up</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input
-          type='text'
-          placeholder='username'
-          className='border p-3 rounded-lg'
-          id='username'
-          onChange={handleChange}
-        />
-        <input
-          type='email'
-          placeholder='email'
-          className='border p-3 rounded-lg'
-          id='email'
-          onChange={handleChange}
-        />
-        <input
-          type='password'
-          placeholder='password'
-          className='border p-3 rounded-lg'
-          id='password'
-          onChange={handleChange}
-        />
-
+        <div className='flex flex-col gap-2'>
+          <label htmlFor='username' className='text-gray-700'>Username</label>
+          <input
+            type='text'
+            placeholder='Enter your username'
+            className='border rounded-lg px-3 py-2'
+            id='username'
+            onChange={handleChange}
+          />
+        </div>
+        <div className='flex flex-col gap-2'>
+          <label htmlFor='email' className='text-gray-700'>Email</label>
+          <input
+            type='email'
+            placeholder='Enter your email'
+            className='border rounded-lg px-3 py-2'
+            id='email'
+            onChange={handleChange}
+          />
+        </div>
+        <div className='flex flex-col gap-2'>
+          <label htmlFor='password' className='text-gray-700'>Password</label>
+          <input
+            type='password'
+            placeholder='Enter your password'
+            className='border rounded-lg px-3 py-2'
+            id='password'
+            onChange={handleChange}
+          />
+        </div>
         <button
           disabled={loading}
-          className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+          className='bg-blue-500 text-white px-4 py-2 rounded-lg uppercase hover:bg-blue-600 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
-        <OAuth/>
+        <OAuth />
       </form>
-      <div className='flex gap-2 mt-5'>
-        <p>Have an account?</p>
-        <Link to={'/sign-in'}>
-          <span className='text-blue-700'>Sign in</span>
-        </Link>
+      <div className='flex items-center justify-center mt-5'>
+        <p className='text-gray-700'>Have an account?</p>
+        <Link to={'/sign-in'} className='ml-2 text-blue-700'>Sign in</Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>
