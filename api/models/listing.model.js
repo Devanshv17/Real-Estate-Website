@@ -54,6 +54,10 @@ const listingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    panorama: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true }
 );

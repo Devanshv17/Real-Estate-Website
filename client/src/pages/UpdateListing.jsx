@@ -27,6 +27,7 @@ export default function CreateListing() {
     offer: false,
     parking: false,
     furnished: false,
+    panorama: false, 
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -119,7 +120,8 @@ export default function CreateListing() {
     if (
       e.target.id === 'parking' ||
       e.target.id === 'furnished' ||
-      e.target.id === 'offer'
+      e.target.id === 'offer' ||
+      e.target.id === 'panorama' 
     ) {
       setFormData({
         ...formData,
@@ -326,9 +328,9 @@ export default function CreateListing() {
         </div>
         <div className='flex flex-col flex-1 gap-4'>
           <p className='font-semibold'>
-            Images:
+            Images (max 6):
             <span className='font-normal text-gray-600 ml-2'>
-              The first image will be the cover (max 6)
+              If you wish to add 3d image then make sure that 1st image is panorama image 
             </span>
           </p>
           <div className='flex gap-4'>
@@ -349,6 +351,16 @@ export default function CreateListing() {
               {uploading ? 'Uploading...' : 'Upload'}
             </button>
           </div>
+          <div className='flex gap-2'>
+              <input
+                type='checkbox'
+                id='panorama' // Added panorama checkbox
+                className='w-5'
+                onChange={handleChange}
+                checked={formData.panorama}
+              />
+              <span>Panorama</span>
+            </div>
           <p className='text-red-700 text-sm'>
             {imageUploadError && imageUploadError}
           </p>

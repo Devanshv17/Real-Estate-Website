@@ -20,6 +20,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^7.6.9",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "pannellum-react": "^1.2.4"
   }
 }
