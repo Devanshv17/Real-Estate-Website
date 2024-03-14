@@ -8,7 +8,7 @@ import {
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import MapPicker from '../components/Maps';
 export default function 
 CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -380,6 +380,8 @@ CreateListing() {
           {error && <p className='text-red-700 text-sm'>{error}</p>}
         </div>
       </form>
+
+      <MapPicker/>
     </main>
   );
 }
