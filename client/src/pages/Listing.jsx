@@ -5,6 +5,7 @@ import SwiperCore from 'swiper';
 import { useSelector } from 'react-redux';
 import { Navigation } from 'swiper/modules';
 import ThreeDViewer  from '../components/3dViewer';
+import FetchMap from '../components/FetchMaps';
 import 'swiper/css/bundle';
 import {
   FaBath,
@@ -169,7 +170,12 @@ export default function Listing() {
               </div>
             )}
           </div>
+          <div>
+            {/* Render the FetchMap component */}
+            <FetchMap location={{ lat: listing.location.lat, lng: listing.location.lng }} />
+          </div>
         </div>
+        
       )}
     </main>
   );
