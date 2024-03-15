@@ -148,7 +148,7 @@ export default function Search() {
             <label className='font-semibold'>Type:</label>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='all'
                 className='w-5'
                 onChange={handleChange}
@@ -158,7 +158,7 @@ export default function Search() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='rent'
                 className='w-5'
                 onChange={handleChange}
@@ -168,7 +168,7 @@ export default function Search() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='sale'
                 className='w-5'
                 onChange={handleChange}
@@ -178,7 +178,7 @@ export default function Search() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='offer'
                 className='w-5'
                 onChange={handleChange}
@@ -191,7 +191,7 @@ export default function Search() {
             <label className='font-semibold'>Amenities:</label>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='parking'
                 className='w-5'
                 onChange={handleChange}
@@ -201,7 +201,7 @@ export default function Search() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='furnished'
                 className='w-5'
                 onChange={handleChange}

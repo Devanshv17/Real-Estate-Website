@@ -29,6 +29,7 @@ export default function CreateListing() {
     parking: false,
     furnished: false,
     panorama: false, 
+    isPrivate: false,
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -121,22 +122,24 @@ export default function CreateListing() {
     if (e.target.id === 'sale' || e.target.id === 'rent') {
       setFormData({
         ...formData,
-        type: e.target.id,
+        type: e.target.id === formData.type ? '' : e.target.id,
       });
     }
-
+  
     if (
+      e.target.id === 'isPrivate' ||
       e.target.id === 'parking' ||
       e.target.id === 'furnished' ||
       e.target.id === 'offer' ||
-      e.target.id === 'panorama' 
+      e.target.id === 'panorama'
     ) {
+      // Toggle the value if the checkbox is already checked
       setFormData({
         ...formData,
-        [e.target.id]: e.target.checked,
+        [e.target.id]: e.target.checked ? !formData[e.target.id] : false,
       });
     }
-
+  
     if (
       e.target.type === 'number' ||
       e.target.type === 'text' ||
@@ -148,6 +151,7 @@ export default function CreateListing() {
       });
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -222,7 +226,7 @@ export default function CreateListing() {
           <div className='flex gap-6 flex-wrap'>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='sale'
                 className='w-5'
                 onChange={handleChange}
@@ -232,7 +236,7 @@ export default function CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='rent'
                 className='w-5'
                 onChange={handleChange}
@@ -242,7 +246,7 @@ export default function CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='parking'
                 className='w-5'
                 onChange={handleChange}
@@ -252,7 +256,7 @@ export default function CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='furnished'
                 className='w-5'
                 onChange={handleChange}
@@ -262,7 +266,7 @@ export default function CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='offer'
                 className='w-5'
                 onChange={handleChange}
@@ -365,13 +369,23 @@ export default function CreateListing() {
           </div>
           <div className='flex gap-2'>
               <input
-                type='radio'
-                id='panorama' // Added panorama radio
+                type='checkbox'
+                id='panorama' // Added panorama checkbox
                 className='w-5'
                 onChange={handleChange}
                 checked={formData.panorama}
               />
               <span>Panorama</span>
+            </div>
+            <div className='flex gap-2'>
+              <input
+                type='checkbox'
+                id='isPrivate'
+                className='w-5'
+                onChange={handleChange}
+                checked={formData.isPrivate}
+              />
+              <span>Private</span>
             </div>
           <p className='text-red-700 text-sm'>
             {imageUploadError && imageUploadError}

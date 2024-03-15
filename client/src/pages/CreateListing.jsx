@@ -106,16 +106,16 @@ CreateListing() {
     if (e.target.id === 'sale' || e.target.id === 'rent') {
       setFormData({
         ...formData,
-        type: e.target.id,
+        type: e.target.id === formData.type ? '' : e.target.id,
       });
     }
   
     if (
-      e.target.id === 'isPrivate' || 
+      e.target.id === 'isPrivate' ||
       e.target.id === 'parking' ||
       e.target.id === 'furnished' ||
       e.target.id === 'offer' ||
-      e.target.id === 'panorama' 
+      e.target.id === 'panorama'
     ) {
       // Toggle the value if the checkbox is already checked
       setFormData({
@@ -135,7 +135,7 @@ CreateListing() {
       });
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -212,7 +212,7 @@ CreateListing() {
 
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='sale'
                 className='w-5'
                 onChange={handleChange}
@@ -222,7 +222,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='rent'
                 className='w-5'
                 onChange={handleChange}
@@ -232,7 +232,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='parking'
                 className='w-5'
                 onChange={handleChange}
@@ -242,7 +242,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='furnished'
                 className='w-5'
                 onChange={handleChange}
@@ -252,7 +252,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='offer'
                 className='w-5'
                 onChange={handleChange}
@@ -356,8 +356,8 @@ CreateListing() {
           </div>
           <div className='flex gap-2'>
               <input
-                type='radio'
-                id='panorama' // Added panorama radio
+                type='checkbox'
+                id='panorama' // Added panorama checkbox
                 className='w-5'
                 onChange={handleChange}
                 checked={formData.panorama}
@@ -367,7 +367,7 @@ CreateListing() {
 
             <div className='flex gap-2'>
               <input
-                type='radio'
+                type='checkbox'
                 id='isPrivate'
                 className='w-5'
                 onChange={handleChange}
