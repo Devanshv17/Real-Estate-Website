@@ -47,7 +47,7 @@ export default function SignIn() {
   
   return (
     <div className='container mx-auto max-w-lg'>
-      <h1 className='text-3xl font-semibold text-center my-7'>Sign In</h1>
+      <h1 className='text-3xl font-semibold text-center my-7 text-slate-900'>Sign In</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <div className='flex flex-col gap-2'>
           <label htmlFor='email' className='text-gray-700'>Email</label>
@@ -71,7 +71,7 @@ export default function SignIn() {
         </div>
         <button
           disabled={loading}
-          className='bg-blue-500 text-white px-4 py-2 rounded-lg uppercase hover:bg-blue-600 disabled:opacity-80'
+          className='bg-slate-900 text-white px-4 py-2 rounded-lg uppercase hover:bg-sky-950 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
@@ -79,7 +79,7 @@ export default function SignIn() {
       </form>
       <div className='flex items-center justify-center mt-5'>
         <p className='text-gray-700'>Don't have an account?</p>
-        <Link to={'/sign-up'} className='ml-2 text-blue-700'>Sign up</Link>
+        <Link to={'/sign-up'} className='ml-2 text-sky-800'>Sign up</Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>

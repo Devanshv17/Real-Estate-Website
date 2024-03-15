@@ -112,24 +112,24 @@ export default function Listing() {
                 {listing.type === 'rent' && ' / month'}
               </p>
               <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
-                <FaMapMarkerAlt className='text-green-700' />
+                <FaMapMarkerAlt className='text-sky-800' />
                 {listing.address}
               </p>
               <div className='flex gap-4'>
-                <p className='bg-red-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
+                <p className='bg-slate-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
                   {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
                 </p>
                 {listing.offer && (
-                  <p className='bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
+                  <p className='bg-slate-900 w-full max-w-[200px] text-white text-center p-1 rounded-md'>
                     ${+listing.regularPrice - +listing.discountPrice} OFF
                   </p>
                 )}
               </div>
-              <p className='text-slate-800'>
-                <span className='font-semibold text-black'>Description - </span>
+              <p className='text-sky-800'>
+                <span className='font-semibold text-slate-900'>Description - </span>
                 {listing.description}
               </p>
-              <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
+              <ul className='text-sky-800 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
                 <li className='flex items-center gap-1 whitespace-nowrap '>
                   <FaBed className='text-lg' />
                   {listing.bedrooms > 1
@@ -154,7 +154,7 @@ export default function Listing() {
               {currentUser && listing.userRef !== currentUser._id && !contact && (
                 <button
                   onClick={() => setContact(true)}
-                  className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
+                  className='bg-slate-900 text-white rounded-lg uppercase hover:opacity-95 p-3'
                 >
                   Contact landlord
                 </button>
@@ -164,7 +164,7 @@ export default function Listing() {
             
             {console.log("Panorama value:", listing.panorama)} {/* Add this line for debugging */}
             {listing.panorama && (
-              <div className='height my-7'>
+              <div className='height my-7 px-5'>
                 <ThreeDViewer image={listing.imageUrls[0]} />
               </div>
             )}
