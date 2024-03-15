@@ -47,11 +47,11 @@ export default function Home() {
     fetchOfferListings();
   }, []);
   return (
-    <div className='bg-sky-200'>
+    <div>
       {/* top */}
       <div className='flex flex-row'>
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-        <h1 className='text-neutral-700 font-bold text-3xl lg:text-6xl'>
+        <h1 className='text-stone-800 font-bold text-3xl lg:text-6xl'>
           Find your next <span className='text-sky-800'>perfect</span>
           <br />
           place with ease
