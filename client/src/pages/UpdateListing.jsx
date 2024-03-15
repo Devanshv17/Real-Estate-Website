@@ -8,9 +8,10 @@ import {
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import MapPicker from '../components/Maps';
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const navigate = useNavigate();
   const params = useParams();
   const [files, setFiles] = useState([]);
@@ -75,6 +76,13 @@ export default function CreateListing() {
       setImageUploadError('You can only upload 6 images per listing');
       setUploading(false);
     }
+  };
+
+
+  const handleLocationSelect = (location) => {
+    console.log('Selected Location:', location);
+    // Set the selected location to be displayed below the map
+    setSelectedLocation(location);
   };
 
   const storeImage = async (file) => {
@@ -148,6 +156,9 @@ export default function CreateListing() {
         return setError('You must upload at least one image');
       if (+formData.regularPrice < +formData.discountPrice)
         return setError('Discount price must be lower than regular price');
+      if (!selectedLocation)
+        return setError('You must select a location on the map');
+        
       setLoading(true);
       setError(false);
       const res = await fetch(`/api/listing/update/${params.listingId}`, {
@@ -158,6 +169,7 @@ export default function CreateListing() {
         body: JSON.stringify({
           ...formData,
           userRef: currentUser._id,
+          location: selectedLocation, 
         }),
       });
       const data = await res.json();
@@ -176,7 +188,7 @@ export default function CreateListing() {
       <h1 className='text-3xl font-semibold text-center my-7'>
         Update a Listing
       </h1>
-      <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
+      <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4 py-5'>
         <div className='flex flex-col gap-4 flex-1'>
           <input
             type='text'
@@ -393,6 +405,13 @@ export default function CreateListing() {
           {error && <p className='text-red-700 text-sm'>{error}</p>}
         </div>
       </form>
+      <MapPicker onLocationSelect={handleLocationSelect} /> {/* Pass the handler function to MapPicker */}
+      {/* Display the selected location below the map */}
+      {selectedLocation && (
+        <div>
+          Selected Location: {selectedLocation.lat}, {selectedLocation.lng}
+        </div>
+      )}
     </main>
   );
 }
