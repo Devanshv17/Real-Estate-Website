@@ -11,10 +11,6 @@ export default defineConfig({
       },
     },
   },
-  build: {
-    rollupOptions: {
-      external: ['@here/maps-api-for-javascript']
-    }
-  },
+
   plugins: [react()],
 });
