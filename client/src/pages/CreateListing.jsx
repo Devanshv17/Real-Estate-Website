@@ -207,7 +207,7 @@ CreateListing() {
           <div className='flex gap-6 flex-wrap'>
             <div className='flex gap-2'>
               <input
-                type='checkbox'
+                type='radio'
                 id='sale'
                 className='w-5'
                 onChange={handleChange}
@@ -217,7 +217,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='checkbox'
+                type='radio'
                 id='rent'
                 className='w-5'
                 onChange={handleChange}
@@ -227,7 +227,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='checkbox'
+                type='radio'
                 id='parking'
                 className='w-5'
                 onChange={handleChange}
@@ -237,7 +237,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='checkbox'
+                type='radio'
                 id='furnished'
                 className='w-5'
                 onChange={handleChange}
@@ -247,7 +247,7 @@ CreateListing() {
             </div>
             <div className='flex gap-2'>
               <input
-                type='checkbox'
+                type='radio'
                 id='offer'
                 className='w-5'
                 onChange={handleChange}
@@ -351,8 +351,8 @@ CreateListing() {
           </div>
           <div className='flex gap-2'>
               <input
-                type='checkbox'
-                id='panorama' // Added panorama checkbox
+                type='radio'
+                id='panorama' // Added panorama radio
                 className='w-5'
                 onChange={handleChange}
                 checked={formData.panorama}
