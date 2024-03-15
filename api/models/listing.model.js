@@ -62,6 +62,10 @@ const listingSchema = new mongoose.Schema(
       type: Object, // Assuming location will be an object
       required: true,
     },
+    isPrivate: { // Added new field to distinguish between public and private listings
+      type: Boolean,
+      required: true, // Default to false (public)
+    },
   },
   { timestamps: true }
 );

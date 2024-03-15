@@ -3,11 +3,12 @@ import { errorHandler } from '../utils/error.js';
 
 export const createListing = async (req, res, next) => {
   try {
-    const { location, panorama, ...listingData } = req.body; // Extract location from req.body
+    const { location,isPrivate , panorama, ...listingData } = req.body; // Extract location from req.body
     const listing = await Listing.create({
       ...listingData,
       location, // Include location in the listing data
       panorama: panorama || false,
+      isPrivate: isPrivate || false,
     });
     return res.status(201).json(listing);
   } catch (error) {
@@ -33,13 +34,14 @@ export const deleteListing = async (req, res, next) => {
 
 export const updateListing = async (req, res, next) => {
   try {
-    const { location, ...updatedData } = req.body;
+    const { location,isPrivate , panorama, ...updatedData } = req.body;
     const updatedListing = await Listing.findByIdAndUpdate(
       req.params.id,
       {
         ...updatedData,
         panorama: req.body.panorama || false,
         location: location, // Save location data
+        isPrivate: isPrivate || false,
       },
       { new: true }
     );

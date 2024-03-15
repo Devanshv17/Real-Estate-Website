@@ -29,6 +29,7 @@ CreateListing() {
     parking: false,
     furnished: false,
     panorama: false, 
+    isPrivate: false,
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -108,19 +109,21 @@ CreateListing() {
         type: e.target.id,
       });
     }
-
+  
     if (
+      e.target.id === 'isPrivate' || 
       e.target.id === 'parking' ||
       e.target.id === 'furnished' ||
       e.target.id === 'offer' ||
       e.target.id === 'panorama' 
     ) {
+      // Toggle the value if the checkbox is already checked
       setFormData({
         ...formData,
-        [e.target.id]: e.target.checked,
+        [e.target.id]: e.target.checked ? !formData[e.target.id] : false,
       });
     }
-
+  
     if (
       e.target.type === 'number' ||
       e.target.type === 'text' ||
@@ -205,6 +208,8 @@ CreateListing() {
             value={formData.address}
           />
           <div className='flex gap-6 flex-wrap'>
+         
+
             <div className='flex gap-2'>
               <input
                 type='radio'
@@ -360,6 +365,16 @@ CreateListing() {
               <span>Panorama</span>
             </div>
 
+            <div className='flex gap-2'>
+              <input
+                type='radio'
+                id='isPrivate'
+                className='w-5'
+                onChange={handleChange}
+                checked={formData.isPrivate}
+              />
+              <span>Private</span>
+            </div>
           <p className='text-red-700 text-sm'>
             {imageUploadError && imageUploadError}
           </p>
