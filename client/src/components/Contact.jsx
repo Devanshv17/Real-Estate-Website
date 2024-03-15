@@ -35,13 +35,13 @@ export default function Contact({ listing }) {
             rows='2'
             value={message}
             onChange={onChange}
-            placeholder='Enter your message here...'
-            className='w-full border p-3 rounded-lg'
+            placeholder='Enter your message here'
+            className='w-full  p-3 rounded-lg'
           ></textarea>
 
           <Link
           to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
-          className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95'
+          className='bg-sky-800 text-white text-center p-3 uppercase rounded-lg hover:opacity-80'
           >
             Send Message          
           </Link>
