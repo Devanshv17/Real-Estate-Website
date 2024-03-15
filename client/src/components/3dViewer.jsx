@@ -2,11 +2,11 @@ import React from 'react';
 import { Pannellum } from "pannellum-react";
 
 const ThreeDViewer = ({ image }) => (
-  <div>
+  <div className='my-7'>
     <h1 className='text-center font-semibold text-2xl'>3d View of the Property</h1>
     <Pannellum
-      width="444px"
-      height="250px"
+      width="533px"
+      height="300px"
       image={image}
       pitch={10}
       yaw={180}

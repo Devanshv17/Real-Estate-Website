@@ -163,14 +163,17 @@ export default function Listing() {
               {contact && <Contact listing={listing} />}
             </div>
             
+            
+          </div>
+          
+          <div className='flex justify-center gap-8'>
             {console.log("Panorama value:", listing.panorama)} {/* Add this line for debugging */}
             {listing.panorama && (
-              <div className='height my-7 px-5'>
+              
                 <ThreeDViewer image={listing.imageUrls[0]} />
-              </div>
+
             )}
-          </div>
-          <div>
+
             {/* Render the FetchMap component */}
             <FetchMap location={{ lat: listing.location.lat, lng: listing.location.lng }} />
           </div>

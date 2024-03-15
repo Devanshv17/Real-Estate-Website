@@ -24,7 +24,12 @@ const FetchMap = ({ location }) => {
     }
   }, [location]);
 
-  return <div id="static-map" style={{ width: '100%', height: '400px' }} />;
+  return( 
+    <div className='my-7'>
+    <h1 className='text-center font-semibold text-2xl'>Geographic Location of the Property</h1>
+    <div id="static-map" style={{ width: '533px', height: '300px' }} />
+    </div>
+    );
 };
 
 export default FetchMap;
