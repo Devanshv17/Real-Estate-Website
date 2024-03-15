@@ -13,6 +13,7 @@ export default function
 CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
@@ -60,6 +61,12 @@ CreateListing() {
       setImageUploadError('You can only upload 6 images per listing');
       setUploading(false);
     }
+  };
+
+  const handleLocationSelect = (location) => {
+    console.log('Selected Location:', location);
+    // Set the selected location to be displayed below the map
+    setSelectedLocation(location);
   };
 
   const storeImage = async (file) => {
@@ -133,6 +140,9 @@ CreateListing() {
         return setError('You must upload at least one image');
       if (+formData.regularPrice < +formData.discountPrice)
         return setError('Discount price must be lower than regular price');
+      if (!selectedLocation)
+        return setError('You must select a location on the map');
+      
       setLoading(true);
       setError(false);
       const res = await fetch('/api/listing/create', {
@@ -143,6 +153,7 @@ CreateListing() {
         body: JSON.stringify({
           ...formData,
           userRef: currentUser._id,
+          location: selectedLocation, // Include selected location here
         }),
       });
       const data = await res.json();
@@ -156,6 +167,7 @@ CreateListing() {
       setLoading(false);
     }
   };
+  
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
@@ -381,7 +393,13 @@ CreateListing() {
         </div>
       </form>
 
-      <MapPicker/>
+      <MapPicker onLocationSelect={handleLocationSelect} /> {/* Pass the handler function to MapPicker */}
+      {/* Display the selected location below the map */}
+      {selectedLocation && (
+        <div>
+          Selected Location: {selectedLocation.lat}, {selectedLocation.lng}
+        </div>
+      )}
     </main>
   );
 }

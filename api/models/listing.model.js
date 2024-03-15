@@ -58,6 +58,10 @@ const listingSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
     },
+    location: { // Add location field if not exist already
+      type: Object, // Assuming location will be an object
+      required: true,
+    },
   },
   { timestamps: true }
 );

@@ -3,9 +3,10 @@ import { errorHandler } from '../utils/error.js';
 
 export const createListing = async (req, res, next) => {
   try {
-    const { panorama, ...listingData } = req.body;
+    const { location, panorama, ...listingData } = req.body; // Extract location from req.body
     const listing = await Listing.create({
       ...listingData,
+      location, // Include location in the listing data
       panorama: panorama || false,
     });
     return res.status(201).json(listing);
@@ -32,12 +33,13 @@ export const deleteListing = async (req, res, next) => {
 
 export const updateListing = async (req, res, next) => {
   try {
-    const { panorama, ...updatedData } = req.body;
+    const { location, ...updatedData } = req.body;
     const updatedListing = await Listing.findByIdAndUpdate(
       req.params.id,
       {
         ...updatedData,
-        panorama: panorama || false,
+        panorama: req.body.panorama || false,
+        location: location, // Save location data
       },
       { new: true }
     );

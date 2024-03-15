@@ -5,7 +5,7 @@ import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
 import customMarkerIcon from '../images/custom-marker-icon.png'; // Import your custom marker icon image
 
-const MapPicker = () => {
+const MapPicker = ({ onLocationSelect }) => {
   const [map, setMap] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [marker, setMarker] = useState(null);
@@ -20,12 +20,21 @@ const MapPicker = () => {
 
     const geocoderInstance = L.Control.geocoder({
       defaultMarkGeocode: false,
+      expand: true, // Expand the control by default
+      collapsed: false, // Don't collapse the control initially
     }).addTo(mapInstance);
 
     geocoderInstance.on('markgeocode', function (e) {
       const latlng = e.geocode.center;
       setSelectedLocation(latlng);
       mapInstance.setView(latlng, 10); // Zoom to the selected location
+
+      onLocationSelect(latlng);
+
+      // Update marker position when a location is selected
+      if (marker) {
+        marker.setLatLng(latlng);
+      }
     });
 
     setMap(mapInstance);
@@ -49,31 +58,20 @@ const MapPicker = () => {
         iconAnchor: [16, 32], // Anchor point of the icon (center bottom)
       });
 
-      const newMarker = L.marker(selectedLocation, { icon: customIcon }).addTo(map);
+      // Make the marker draggable
+      const newMarker = L.marker(selectedLocation, { icon: customIcon, draggable: true }).addTo(map);
+      newMarker.on('dragend', function(event) {
+        const newPosition = event.target.getLatLng();
+        onLocationSelect(newPosition);
+      });
       setMarker(newMarker);
     }
   }, [selectedLocation]);
 
-  const handleSelectLocation = () => {
-    if (selectedLocation) {
-      console.log('Selected Location:', selectedLocation);
-      // You can perform further actions with the selected location here
-    } else {
-      console.error('No location selected.');
-    }
-  };
-
   return (
     <div className="flex flex-col items-center">
       <div id="map" className="w-full h-96" />
-      <div className="mt-4">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-          onClick={handleSelectLocation}
-        >
-          Select Location
-        </button>
-      </div>
+
     </div>
   );
 };
