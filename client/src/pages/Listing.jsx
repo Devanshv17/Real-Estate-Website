@@ -166,7 +166,7 @@ export default function Listing() {
             
           </div>
           
-          <div className='flex justify-center gap-8'>
+          <div className='flex flex-wrap justify-center gap-8'>
             {console.log("Panorama value:", listing.panorama)} {/* Add this line for debugging */}
             {listing.panorama && (
               
